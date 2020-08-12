@@ -1,0 +1,33 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="SUITE" verbose="1" thread-count="1"
+	parallel="methods">
+	<parameter name="remoteURL" value="" /><!-- http://192.168.0.181:4444/wd/hub -->
+	<listeners>
+		<listener class-name="com.listener.CustomListener" />
+	</listeners>
+
+	<!-- ${environment} -->
+
+	<test name="TESTS">
+		<parameter name="environment" value="ADMIN-STG" />
+		<parameter name="platform" value="" />
+		<classes>
+			<class name="tests.DemoTests">
+				<methods>
+					<!-- <include name="browserLevelActionsDemo"></include> -->
+					<!-- <include name="locatingDynamicObjectsDemo"></include> -->
+					<!-- <include name="getCommandsDemo"></include> -->
+					<!-- <include name="closingTabDemo"></include> -->
+					<!-- <include name="switchToFrameDemo" />
+					<include name="alertDemo" />
+					<include name="dropdownDemo" />
+					<include name="mouseActionsDemo" />
+					<include name="keyboardActionsDemo" /> -->
+					<!-- <include name="javascriptActionsDemo" /> -->
+					<!-- <include name="sendKeysDemo" /> -->
+					<include name="fileUploadDownloadDemo" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>
