@@ -457,7 +457,10 @@ public class CustomReportHTML_Redesign {
 		
 		// Updating Class Level Status as per Methods
 		List<TestNGTests_POJO> testList = suite.getTestList();
-				
+		
+		if(testList==null || testList.size() == 0)
+			return;
+		
 		for (TestNGTests_POJO test : testList) {
 			
 			List<TestNGClass_POJO> classList = test.getClassList();
@@ -542,6 +545,10 @@ public class CustomReportHTML_Redesign {
 	private static String generateHTML_QuickAccessDataElements(TestNGSuite_POJO suite) {
 		// Constructing the HTML Hierarchy
 		List<TestNGTests_POJO> testList = suite.getTestList();
+
+		if(testList==null || testList.size() == 0)
+			return "";
+		
 		String testHtml = "<ol style='padding-left:20px;'>";
 		
 		for (TestNGTests_POJO test : testList) {
@@ -566,7 +573,7 @@ public class CustomReportHTML_Redesign {
 							"    <span class='btn_0 title-start-time-scenario'>"+meth.getStart()+"</span> / " + 
 							"    <span class='btn_0 title-end-time-scenario'>"+meth.getEnd()+"</span> / " + 
 							"    <span class='btn_0 title-exec-time-scenario'>"+meth.getElapsed()+"</span>" + 
-							"    <span class='btn_0 group'>"+meth.getGroup()+"</span>" + 
+							"    <span class='btn_0'>"+ generateGroupTags(meth.getGroup()) +"</span>" + 
 							"</div>"
 							+ "</span>"
 							+ "</li>";
@@ -593,6 +600,29 @@ public class CustomReportHTML_Redesign {
 		return elements;
 	}
 	
+	
+	private static String generateGroupTags(String group) {
+		
+		String data = "";
+		
+		if (group.equals("[]")) {
+			return "<span class='btn_0 group'></span>";
+		}else {
+			
+			group = group.substring(1, group.length()-1);
+			
+			if(group.contains(",")){
+				String arr[] = group.split(",");
+				for (String val : arr) {
+					data = data + "<span class='btn_0 group'>"+val+"</span>";
+				}
+			}else {
+				data = "<span class='btn_0 group'>"+group+"</span>";
+			}
+		}
+		
+		return data;
+	}
 	
 	private static void assignSerialNumber() {
 		for (int i = 1; i <= listOfList.size(); i++) {

@@ -25,12 +25,12 @@ public class Constant {
 	/**
 	 * This constant holds the project name which is displayed in the HTML Reports
 	 */
-	public static final String PROJECT = "Finance Manager";
+	public static final String PROJECT = "Demo Project";
 
 	/**
 	 * This constant holds the EMAIL address, which will be filled during execution
 	 */
-	public static final String EMAIL = "testteam.financemanager@gmail.com";
+	public static final String EMAIL = "dummymail@gmail.com";
 
 	/**
 	 * To Register a new User in Commercial Website We need to have a unique email

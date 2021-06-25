@@ -38,13 +38,13 @@
 		<overwrite.binaries>false</overwrite.binaries>
 		<read.timeout>30000</read.timeout>
 		<connection.timeout>40000</connection.timeout>
-		<retry.attempts>4</retry.attempts>
+		<retry.attempts>1</retry.attempts>
 		<proxyEnabled>false</proxyEnabled>
 		<proxyHost />
 		<proxyPort />
 
 		<!-- Controlling Test and Environment Info -->
-		<testNGFileName>testNg.xml</testNGFileName>
+		<testNGFileName>testNg_ForDemo.xml</testNGFileName>
 	</properties>
 
 	<dependencies>

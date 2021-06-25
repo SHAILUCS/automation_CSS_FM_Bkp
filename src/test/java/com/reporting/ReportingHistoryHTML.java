@@ -170,9 +170,9 @@ public class ReportingHistoryHTML {
 			}
 			
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return quickAccessContent;
 	}
@@ -189,9 +189,9 @@ public class ReportingHistoryHTML {
 			int pickerEnd=wholeHtmlContent.indexOf(pickerDashboardEndPlaceholder);
 			dashBoardContent=wholeHtmlContent.substring(pickerStart, pickerEnd);
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return dashBoardContent;
 	}

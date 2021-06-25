@@ -1,4 +1,4 @@
-package or.admin;
+package or.admin1;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,42 +14,43 @@ import com.xl.ExcelManager;
 
 import or.common.LoginHelper;
 
-public class Login_Admin {
+public class Login {
 
 	private static final String title = "Finance Manager";
 
 	private static final String SHEET_NAME = Constant.getEnvironmentInfoSheet();
 
-	@FindBy(id = "email")
+	@FindBy(id = "txtUsername")
 	private WebElement text_Email;
 
-	@FindBy(id = "password")
+	@FindBy(id = "txtPassword")
 	private WebElement text_Password;
 
-	@FindBy(xpath = "//button[.='LOGIN']")
+	@FindBy(id = "btnLogin")
 	private WebElement button_Login;
 
 	SeleniumMethods com;
 
-	public Login_Admin() {
+	public Login() {
 		PageFactory.initElements(DriverFactory.getDriver(), this);
 		com = new SeleniumMethods();
 	}
 
-
+	
 	public void performLogin(String type) {
+		
 		String user = LoginHelper.performLogin(text_Email, text_Password, button_Login, type);
 		
-		if (com.verifyPageUrl(Dashboard_Admin.url)) {
+		if (com.verifyPageUrl(Dashboard.url)) {
 			Reporter.report(STATUS.PASS, "Login succeed with user id: " + type + " and username: " + user);
 		} else {
 			Reporter.report(STATUS.PASS,
 					"Login Failed with user mapping id: " + type + " and username: " + user);
-			Assert.fail("Login Failed with user mapping id: " + type+ " and username: " + user);
+			Assert.fail("Login Failed with user mapping id: " + type + " and username: " + user);
 		}
 	}
 
-	public Login_Admin load_App_URL() {
+	public Login load_App_URL() {
 
 		Reporter.createNode("Loading " + title + " URL");
 

@@ -10,26 +10,21 @@ import com.reporting.STATUS;
 import com.selenium.SeleniumMethods;
 import com.selenium.webdriver.DriverFactory;
 
-import or.admin.Dashboard_Admin;
-import or.admin.Login_Admin;
-import or.admin.VendorListing;
-import or.user.Dashboard_User;
-import or.user.InvoiceListing;
-import or.user.Login_User;
-import or.user.StatementListing;
+import or.admin1.Dashboard;
+import or.admin1.Login;
 
 public class DemoTests {
 	
-	@Test
+	@Test(groups = {"regression","smoke"})
 	private void browserLevelActionsDemo() {
-		Login_User login = new Login_User();
+		Login login = new Login();
 		login.load_App_URL();
-		login.performLogin("USR");
+		login.performLogin("Admin");
 		
 		SeleniumMethods com = new SeleniumMethods();
 	
-		Dashboard_User d = new Dashboard_User();
-		com.navigateToAndVerifyPageUrl(d.link_BankStatement,StatementListing.title);
+		Dashboard d = new Dashboard();
+		com.navigateToAndVerifyPageUrl(d.leave,"viewLeaveList");
 		
 		com.wait(2);
 		
@@ -42,44 +37,40 @@ public class DemoTests {
 		com.navigateForward();
 		
 		com.wait(2);
-		com.navigateTo("https://dev.yourfinancemanager.in/user/vendors");
+		com.navigateTo("https://opensource-demo.orangehrmlive.com/index.php/dashboard");
 	}
 	
-	@Test
+	@Test(groups = {"smoke"})
 	private void locatingDynamicObjectsDemo() {
-		Login_User login = new Login_User();
+		Login login = new Login();
 		login.load_App_URL();
-		login.performLogin("USR");
+		login.performLogin("Admin");
 		SeleniumMethods com = new SeleniumMethods();
 		
-		Dashboard_User d = new Dashboard_User();
-		com.navigateToAndVerifyPageUrl(d.link_InvoiceStatement,InvoiceListing.title);
-		
-		InvoiceListing inv = new InvoiceListing();
-		
-		inv.verifySearch("FM232");
+		Dashboard d = new Dashboard();
+		com.navigateToAndVerifyPageUrl(d.myInfo,"viewMyDetails");
 		
 	}
 	
 	@Test
 	private void getCommandsDemo() {
-		Login_User login = new Login_User();
+		Login login = new Login();
 		login.load_App_URL();
-		login.performLogin("USR");
+		login.performLogin("Admin");
 		SeleniumMethods com = new SeleniumMethods();
-		Dashboard_User d = new Dashboard_User();
+		Dashboard d = new Dashboard();
 
 		Reporter.createNode("GET CURRENT URL");
 		Reporter.report(STATUS.INFO, com.getCurrentUrl());
 
 		Reporter.createNode("GET ATTRIBUTE");
-		Reporter.report(STATUS.INFO, com.getAttribute(d.link_BankStatement, "href"));
+		Reporter.report(STATUS.INFO, com.getAttribute(d.leave, "href"));
 
 		Reporter.createNode("GET PAGE SOURCE");
 		Reporter.report(STATUS.INFO, com.getPageSource());
 
 		Reporter.createNode("GET TEXT");
-		Reporter.report(STATUS.INFO, com.getText(d.link_InvoiceStatement));
+		Reporter.report(STATUS.INFO, com.getText(d.applyLeave));
 
 		Reporter.createNode("GET TITLE");
 		Reporter.report(STATUS.INFO, com.getTitle());
@@ -88,22 +79,22 @@ public class DemoTests {
 		Reporter.report(STATUS.INFO, com.getWindowHandle());
 
 		Reporter.createNode("GET OBJ HEIGHT");
-		Reporter.report(STATUS.INFO, com.getHeight(d.link_BankStatement)+"");
+		Reporter.report(STATUS.INFO, com.getHeight(d.recruitment)+"");
 		
 		Reporter.createNode("GET BY OBJ FROM WEB ELEMENT");
-		Reporter.report(STATUS.INFO, com.getByObjectFromWebElement(d.link_BankStatement)+"");
+		Reporter.report(STATUS.INFO, com.getByObjectFromWebElement(d.recruitment)+"");
 	}
 	
 	@Test
 	private void closingTabDemo() {
-		Login_User login = new Login_User();
+		Login login = new Login();
 		login.load_App_URL();
-		login.performLogin("USR");
+		login.performLogin("Admin");
 		SeleniumMethods com = new SeleniumMethods();
 		
-		Dashboard_User d = new Dashboard_User();
+		Dashboard d = new Dashboard();
 		
-		com.sendKeys(d.link_InvoiceStatement, Keys.chord(Keys.CONTROL,Keys.RETURN));
+		com.sendKeys(d.leave, Keys.chord(Keys.CONTROL,Keys.RETURN));
 		
 		String currentTab = com.getWindowHandle();
 		
@@ -113,7 +104,7 @@ public class DemoTests {
 		
 		com.switchTo_Window(currentTab);
 		
-		com.navigateToAndVerifyPageUrl(d.link_InvoiceStatement,InvoiceListing.title);
+		com.navigateToAndVerifyPageUrl(d.leave,"viewLeaveList");
 		
 	}
 	
@@ -271,16 +262,6 @@ public class DemoTests {
 	@Test
 	private void keyboardActionsDemo() {
 
-		Login_Admin l = new Login_Admin();
-		l.load_App_URL().performLogin("SSR");
-
-		Dashboard_Admin d = new Dashboard_Admin();
-
-		d.navigateToVendorList();
-
-		VendorListing v = new VendorListing();
-
-		v.performSearch("FM7");
 	}
 
 	@Test

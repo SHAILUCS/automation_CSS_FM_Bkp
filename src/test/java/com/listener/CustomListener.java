@@ -277,7 +277,7 @@ public class CustomListener implements ITestListener,IExecutionListener{
 		
 		// In case you forgot to provide description to a test method, then
 		// method name will be shown in HTML report instead of {null}
-		if (result.getMethod().getDescription()==null) {
+		if (result.getMethod().getDescription()==null || result.getMethod().getDescription().trim().equals("")) {
 			testDataMap.put(TestNGKeys.description, result.getMethod().getMethodName());	
 		}else{
 			testDataMap.put(TestNGKeys.description, result.getMethod().getDescription());
